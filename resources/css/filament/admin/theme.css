@@ -1,0 +1,36 @@
+@import '/vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+
+body{
+    background-color: white !important;
+}
+
+.fi-sidebar{
+    background-image: url("https://st.depositphotos.com/1027431/2471/v/450/depositphotos_24712251-stock-illustration-abstract-geometrical-background.jpg");
+}
+.fi-sidebar-item-button{
+    color: white !important;
+    background-color: transparent;
+}
+.fi-sidebar-item-icon, .fi-sidebar-item-label{
+    color: white;
+}
+.fi-sidebar-header{
+    @apply bg-orange-700 !important;
+}
+.fi-header{
+    padding: 10px;
+    border: 1px solid #eae3e3;
+    border-radius: 5px;
+}
+.fi-sidebar-item-button:hover{
+    @apply bg-orange-700 !important;
+}
+.fi-topbar{
+    @apply bg-green-400;
+}
+.fi-sidebar-group-label{
+    @apply text-white;
+}
