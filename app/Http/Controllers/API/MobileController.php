@@ -41,7 +41,7 @@ class MobileController extends Controller
             $acteDeces->pv_deces = $request->file('pv_deces')->storePublicly('pv_deces');
         }
         if($request->hasFile('piece_identite')){
-            $acteDeces->pv_deces = $request->file('piece_identite')->storePublicly('piece_identites');
+            $acteDeces->piece_identite = $request->file('piece_identite')->storePublicly('piece_identites');
         }
 
         $acteDeces->fill($request->only([
