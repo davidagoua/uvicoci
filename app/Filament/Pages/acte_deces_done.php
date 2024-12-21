@@ -30,7 +30,7 @@ class acte_deces_done extends Page implements HasTable
         return $table->columns([
                 TextColumn::make('owner')
             ])->actions([
-                Action::make('exporter')->label("Exporter")
+                \Filament\Tables\Actions\Action::make('exporter')->label("Exporter")
             ])
             ;
     }
