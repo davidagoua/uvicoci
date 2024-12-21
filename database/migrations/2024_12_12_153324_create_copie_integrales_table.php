@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('numero_piece')->nullable();
             $table->string('extrait')->nullable();
             $table->longText('motif')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->string('numero_acte')->nullable();
             $table->string('nb_copie')->nullable();
             $table->string('lieu')->nullable();
