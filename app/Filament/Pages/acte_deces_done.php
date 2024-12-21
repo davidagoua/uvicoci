@@ -2,10 +2,12 @@
 
 namespace App\Filament\Pages;
 
+use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Table;
 
 class acte_deces_done extends Page implements HasTable
 {
@@ -25,8 +27,19 @@ class acte_deces_done extends Page implements HasTable
 
     public function table()
     {
+        return Table::make()
+            ->columns([
+                TextColumn::make('owner')
+            ])->actions([
+                Action::make('exporter')->label("Exporter")
+            ])
+            ;
+    }
+
+    public function getHeaderActions()
+    {
         return [
-            TextColumn::make('owner')
+          Action::make('exporter')->label("Exporter")
         ];
     }
 }
