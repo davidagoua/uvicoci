@@ -3,9 +3,14 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Concerns\InteractsWithTable;
 
 class acte_deces_done extends Page
 {
+
+    use InteractsWithTable;
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament.pages.acte_deces_done';
@@ -15,5 +20,12 @@ class acte_deces_done extends Page
     public static function getNavigationBadge(): ?string
     {
         return 0;
+    }
+
+    public function table()
+    {
+        return [
+            TextColumn::make('owner')
+        ];
     }
 }
