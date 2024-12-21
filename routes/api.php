@@ -36,5 +36,5 @@ Route::post('/auth/token', function (Request $request) {
         ]);
     }
 
-    return $user->createToken($request->device_name)->plainTextToken;
+    return response($user->createToken($request->device_name)->plainTextToken)->header('Content-Type','application/json');
 });
