@@ -65,14 +65,15 @@ class MobileController extends Controller
             'telephone'=>'required',
         ]);
         */
+        /*
         if($request->hasFile('pv_deces')){
             $acteDeces->pv_deces = $request->file('pv_deces')->storePublicly('pv_deces');
         }
         if($request->hasFile('piece_identite')){
             $acteDeces->piece_identite = $request->file('piece_identite')->storePublicly('piece_identites');
         }
-
-        $acteDeces->fill($request->only([
+        */
+        $acteDeces->fill($request->json()->only([
             'owner','telephone','email','numero_piece','nom_defunt','prenoms_defunt',
             'lieu_naissance_defunt','date_naissance_defunt','type_piece','motif',
             'numero_acte','nb_copie','lieu'
