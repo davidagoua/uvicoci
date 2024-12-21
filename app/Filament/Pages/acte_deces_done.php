@@ -36,7 +36,7 @@ class acte_deces_done extends Page implements HasTable
             ;
     }
 
-    public function getHeaderActions()
+    public function getHeaderActions(): array
     {
         return [
           Action::make('exporter')->label("Exporter")
