@@ -37,7 +37,13 @@ class acte_deces_done extends Page implements HasTable
         return $table
             ->query(ActeDeces::query())
             ->columns([
-                TextColumn::make('owner')
+                TextColumn::make('owner')->badge(),
+                TextColumn::make('email'),
+                TextColumn::make('telephone'),
+                TextColumn::make('numero_piece'),
+                TextColumn::make('nom_prenom')
+                    ->label("Nom& Prénoms defunt")
+                    ->getStateUsing(fn ($state) => $state->nom_defunt . ' '. $state->prenoms_defunt),
             ])->actions([
                 \Filament\Tables\Actions\Action::make('exporter')->label("Exporter")
             ])
