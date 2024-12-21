@@ -6,6 +6,7 @@ use App\Models\ActeDeces;
 use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -58,7 +59,7 @@ class acte_deces_done extends Page implements HasTable
             ])
             ->bulkActions([
                 \Filament\Tables\Actions\BulkAction::make('exporter')->label("Exporter"),
-                DeleteAction::make('supprimer')
+                DeleteBulkAction::make('supprimer')
             ])
             ;
     }
