@@ -38,3 +38,8 @@ Route::post('/auth/token', function (Request $request) {
 
     return response($user->createToken($request->device_name)->plainTextToken)->header('Content-Type','application/json');
 });
+
+
+Route::controller(\App\Http\Controllers\API\MobileController::class)->group(function(){
+    Route::post('/items', 'store_acte');
+});
