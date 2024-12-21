@@ -85,7 +85,9 @@ class MobileController extends Controller
         }
         $acteDeces->save();
 
-        return $this->respondCreated();
+        return $this->respondCreated([
+            "message"=>"item created",
+        ]);
     }
 
     public function create_declaration_naissance(Request $request, DeclarationNaissance $declarationNaissance): \Illuminate\Http\JsonResponse
