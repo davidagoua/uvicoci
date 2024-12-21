@@ -43,7 +43,8 @@ class acte_deces_done extends Page implements HasTable
             ->query(ActeDeces::query())
             ->columns([
                 TextColumn::make('created_at')->label("Date de création"),
-                IconColumn::make('status')
+                IconColumn::make('owner')
+                    ->label('Titulaire')
                     ->icon(fn (string $state): string =>  [
                         true => 'heroicon-o-check-circle',
                         false => 'heroicon-o-x-circle',
