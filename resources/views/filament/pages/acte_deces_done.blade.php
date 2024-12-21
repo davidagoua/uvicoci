@@ -1,5 +1,5 @@
 <x-filament-panels::page>
     <div>
-        {{ $table }}
+        {{ $this->table }}
     </div>
 </x-filament-panels::page>
