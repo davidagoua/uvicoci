@@ -27,7 +27,7 @@ class MobileController extends Controller
             'type_acte'=>'required'
         ]);
 
-        switch ($request->input('type_acte')){
+        switch ($request->json()->get('type_acte')){
             case 'ActeDeces':
                 return $this->create_acte_deces($request, new ActeDeces());
                 break;
