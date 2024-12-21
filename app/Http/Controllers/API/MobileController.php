@@ -26,7 +26,7 @@ class MobileController extends Controller
         $data = Validator::validate($request->json()->all(), [
             'type_acte'=>'required'
         ]);
-        dd($data);
+        return $data;
         switch ($request->input('type_acte')){
             case 'ActeDeces':
                 return $this->create_acte_deces($request, new ActeDeces());
