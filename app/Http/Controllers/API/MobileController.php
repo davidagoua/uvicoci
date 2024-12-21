@@ -58,7 +58,7 @@ class MobileController extends Controller
             'email'=>'required|email',
             'telephone'=>'required',
         ]);
-        dd($data);
+        dd($request->all());
         /*
         $data = $request->validate([
             'owner'=>'required|boolean',
