@@ -44,8 +44,11 @@ class MobileController extends Controller
             $acteDeces->pv_deces = $request->file('piece_identite')->storePublicly('piece_identites');
         }
 
-        $acteDeces->fill($data)
-            ->fill($request->input())
+        $acteDeces->fill($request->only([
+            'owner','telephone','email','numero_piece','nom_defunt','prenoms_defunt',
+            'lieu_naissance_defunt','date_naissance_defunt','type_piece','motif',
+            'numero_acte','nb_copie','lieu'
+        ]))
             ->save();
 
         return $this->respondCreated();
