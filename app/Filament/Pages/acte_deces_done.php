@@ -34,7 +34,9 @@ class acte_deces_done extends Page implements HasTable
 
     public function table(Table $table): Table
     {
-        return $table->columns([
+        return $table
+            ->query(ActeDeces::query())
+            ->columns([
                 TextColumn::make('owner')
             ])->actions([
                 \Filament\Tables\Actions\Action::make('exporter')->label("Exporter")
