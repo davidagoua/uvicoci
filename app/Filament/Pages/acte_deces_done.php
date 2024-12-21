@@ -7,6 +7,7 @@ use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -44,8 +45,8 @@ class acte_deces_done extends Page implements HasTable
                 TextColumn::make('created_at')->label("Date de création"),
                 IconColumn::make('status')
                     ->icon(fn (string $state): string =>  [
-                        0 => 'heroicon-o-check',
-                        1 => 'heroicon-o-times',
+                        true => 'heroicon-o-check-circle',
+                        false => 'heroicon-o-x-circle',
                     ][$state]),
                 TextColumn::make('email'),
                 TextColumn::make('telephone'),
@@ -55,11 +56,13 @@ class acte_deces_done extends Page implements HasTable
             ->actions([
                 \Filament\Tables\Actions\Action::make('consulter')
                     ->button()
-                    ->icon('heroicon-o-eye')
+                    ->icon('heroicon-o-eye'),
+                EditAction::make('supprimer')->iconButton()->icon('heroicon-o-pencil'),
+                DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
             ->bulkActions([
                 \Filament\Tables\Actions\BulkAction::make('exporter')->label("Exporter"),
-                DeleteBulkAction::make('supprimer')
+                DeleteBulkAction::make('supprimer')->requiresConfirmation()
             ])
             ;
     }
