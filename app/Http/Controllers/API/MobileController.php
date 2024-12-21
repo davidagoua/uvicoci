@@ -53,12 +53,18 @@ class MobileController extends Controller
 
     public function create_acte_deces(Request $request, ActeDeces $acteDeces): \Illuminate\Http\JsonResponse
     {
+        Validator::validate($request->json()->all(), [
+            'owner'=>'required|boolean',
+            'email'=>'required|email',
+            'telephone'=>'required',
+        ]);
+        /*
         $data = $request->validate([
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
         ]);
-
+        */
         if($request->hasFile('pv_deces')){
             $acteDeces->pv_deces = $request->file('pv_deces')->storePublicly('pv_deces');
         }
