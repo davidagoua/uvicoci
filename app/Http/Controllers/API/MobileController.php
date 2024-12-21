@@ -34,7 +34,7 @@ class MobileController extends Controller
         $data = $request->validate([
             'owner'=>'required',
             'email'=>'required|email',
-            'telepone'=>'required',
+            'telephone'=>'required',
         ]);
 
         if($request->hasFile('pv_deces')){
