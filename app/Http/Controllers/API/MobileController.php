@@ -26,7 +26,7 @@ class MobileController extends Controller
         $data = Validator::validate($request->json()->all(), [
             'type_acte'=>'required'
         ]);
-        return $request->json()->all();
+
         switch ($request->input('type_acte')){
             case 'ActeDeces':
                 return $this->create_acte_deces($request, new ActeDeces());
@@ -53,33 +53,32 @@ class MobileController extends Controller
 
     public function create_acte_deces(Request $request, ActeDeces $acteDeces): \Illuminate\Http\JsonResponse
     {
-        $data = Validator::validate($request->json()->all(), [
-            'owner'=>'required|boolean',
-            'email'=>'required|email',
-            'telephone'=>'required',
-        ]);
-        dd($request->all());
+
         /*
-        $data = $request->validate([
-            'owner'=>'required|boolean',
-            'email'=>'required|email',
-            'telephone'=>'required',
-        ]);
+       $data = Validator::validate($request->json()->all(), [
+           'owner'=>'required|boolean',
+           'email'=>'required|email',
+           'telephone'=>'required',
+       ]);
+       // return $request->json()->all();
+
+       $data = $request->validate([
+           'owner'=>'required|boolean',
+           'email'=>'required|email',
+           'telephone'=>'required',
+       ]);
+       */
+        /*
+
         */
-        /*
+        $acteDeces->fill($request->json()->all());
         if($request->hasFile('pv_deces')){
             $acteDeces->pv_deces = $request->file('pv_deces')->storePublicly('pv_deces');
         }
         if($request->hasFile('piece_identite')){
             $acteDeces->piece_identite = $request->file('piece_identite')->storePublicly('piece_identites');
         }
-        */
-        $acteDeces->fill($request->only([
-            'owner','telephone','email','numero_piece','nom_defunt','prenoms_defunt',
-            'lieu_naissance_defunt','date_naissance_defunt','type_piece','motif',
-            'numero_acte','nb_copie','lieu'
-        ]))
-            ->save();
+        $acteDeces->save();
 
         return $this->respondCreated();
     }
