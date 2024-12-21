@@ -53,11 +53,12 @@ class MobileController extends Controller
 
     public function create_acte_deces(Request $request, ActeDeces $acteDeces): \Illuminate\Http\JsonResponse
     {
-        Validator::validate($request->json()->all(), [
+        $data = Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
         ]);
+        dd($data);
         /*
         $data = $request->validate([
             'owner'=>'required|boolean',
@@ -73,7 +74,7 @@ class MobileController extends Controller
             $acteDeces->piece_identite = $request->file('piece_identite')->storePublicly('piece_identites');
         }
         */
-        $acteDeces->fill($request->json()->only([
+        $acteDeces->fill($request->only([
             'owner','telephone','email','numero_piece','nom_defunt','prenoms_defunt',
             'lieu_naissance_defunt','date_naissance_defunt','type_piece','motif',
             'numero_acte','nb_copie','lieu'
