@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Models\ActeDeces;
 use Filament\Actions\Action;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -42,8 +43,8 @@ class acte_deces_done extends Page implements HasTable
                 TextColumn::make('created_at')->label("Date de création"),
                 IconColumn::make('status')
                     ->icon(fn (string $state): string =>  [
-                        0 => 'heroicon-o-pencil',
-                        1 => 'heroicon-o-clock',
+                        0 => 'heroicon-o-check',
+                        1 => 'heroicon-o-times',
                     ][$state]),
                 TextColumn::make('email'),
                 TextColumn::make('telephone'),
@@ -56,7 +57,8 @@ class acte_deces_done extends Page implements HasTable
                     ->icon('heroicon-o-eye')
             ])
             ->bulkActions([
-                \Filament\Tables\Actions\BulkAction::make('exporter')->label("Exporter")
+                \Filament\Tables\Actions\BulkAction::make('exporter')->label("Exporter"),
+                DeleteAction::make('supprimer')
             ])
             ;
     }
