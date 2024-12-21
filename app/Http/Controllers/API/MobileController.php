@@ -32,7 +32,7 @@ class MobileController extends Controller
     public function create_acte_deces(Request $request, ActeDeces $acteDeces): \Illuminate\Http\JsonResponse
     {
         $data = $request->validate([
-            'owner'=>'required',
+            'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
         ]);

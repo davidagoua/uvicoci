@@ -5,8 +5,9 @@ namespace App\Filament\Pages;
 use Filament\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
 
-class acte_deces_done extends Page
+class acte_deces_done extends Page implements HasTable
 {
 
     use InteractsWithTable;
