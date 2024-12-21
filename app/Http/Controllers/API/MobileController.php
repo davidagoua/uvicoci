@@ -71,6 +71,7 @@ class MobileController extends Controller
         /*
 
         */
+        $request->json()->remove('type_acte');
         $acteDeces->fill($request->json()->all());
         if($request->hasFile('pv_deces')){
             $acteDeces->pv_deces = $request->file('pv_deces')->storePublicly('pv_deces');
