@@ -2,12 +2,14 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\ActeDeces;
 use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class acte_deces_done extends Page implements HasTable
 {
@@ -23,6 +25,11 @@ class acte_deces_done extends Page implements HasTable
     public static function getNavigationBadge(): ?string
     {
         return 0;
+    }
+
+    public function query(): Builder
+    {
+        return ActeDeces::query();
     }
 
     public function table(Table $table): Table
