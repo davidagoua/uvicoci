@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Models\ActeDeces;
 use Filament\Actions\Action;
 use Filament\Pages\Page;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -39,7 +40,11 @@ class acte_deces_done extends Page implements HasTable
             ->query(ActeDeces::query())
             ->columns([
                 TextColumn::make('created_at')->label("Date de création"),
-                TextColumn::make('owner')->badge(),
+                IconColumn::make('status')
+                    ->icon(fn (string $state): string =>  [
+                        0 => 'heroicon-o-pencil',
+                        1 => 'heroicon-o-clock',
+                    ][$state]),
                 TextColumn::make('email'),
                 TextColumn::make('telephone'),
                 TextColumn::make('numero_piece'),
