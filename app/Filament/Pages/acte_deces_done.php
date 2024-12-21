@@ -19,12 +19,13 @@ class acte_deces_done extends Page implements HasTable
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament.pages.acte_deces_done';
+    protected static ?string $title = "";
     protected static ?string $navigationLabel = "Terminés";
     protected static ?string $navigationGroup = "Acte de decès";
 
     public static function getNavigationBadge(): ?string
     {
-        return 0;
+        return ActeDeces::query()->count();
     }
 
     public function query(): Builder
@@ -37,15 +38,20 @@ class acte_deces_done extends Page implements HasTable
         return $table
             ->query(ActeDeces::query())
             ->columns([
+                TextColumn::make('created_at')->label("Date de création"),
                 TextColumn::make('owner')->badge(),
                 TextColumn::make('email'),
                 TextColumn::make('telephone'),
                 TextColumn::make('numero_piece'),
-                TextColumn::make('nom_prenom')
-                    ->label("Nom& Prénoms defunt")
-                    ->getStateUsing(fn ($state) => $state->nom_defunt . ' '. $state->prenoms_defunt),
-            ])->actions([
-                \Filament\Tables\Actions\Action::make('exporter')->label("Exporter")
+
+            ])
+            ->actions([
+                \Filament\Tables\Actions\Action::make('consulter')
+                    ->button()
+                    ->icon('heroicon-o-eye')
+            ])
+            ->bulkActions([
+                \Filament\Tables\Actions\BulkAction::make('exporter')->label("Exporter")
             ])
             ;
     }
