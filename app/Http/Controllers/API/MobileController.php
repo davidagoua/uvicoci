@@ -23,7 +23,7 @@ class MobileController extends Controller
 
     public function store_acte(Request $request)
     {
-        Validator::validate($request->json(), [
+        Validator::validate($request->json()->all(), [
             'type_acte'=>'required'
         ]);
 
