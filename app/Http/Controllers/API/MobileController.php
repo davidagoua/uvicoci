@@ -23,7 +23,7 @@ class MobileController extends Controller
 
     public function store_acte(Request $request)
     {
-        Validator::validate($request->json()->all(), [
+        Validator::validate($request->input(), [
             'type_acte'=>'required'
         ]);
 
@@ -53,7 +53,7 @@ class MobileController extends Controller
 
     public function create_acte_deces(Request $request, ActeDeces $acteDeces): \Illuminate\Http\JsonResponse
     {
-        $data = Validator::validate($request->json()->all(), [
+        $data = Validator::validate($request->input(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
