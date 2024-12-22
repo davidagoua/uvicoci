@@ -29,18 +29,18 @@ class acte_deces_done extends Page implements HasTable
 
     public static function getNavigationBadge(): ?string
     {
-        return ActeDeces::query()->count();
+        return ActeDeces::query()->whereStatus(100)->count();
     }
 
     public function query(): Builder
     {
-        return ActeDeces::query();
+        return ActeDeces::query()->whereStatus(100);
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->query(ActeDeces::query())
+            ->query(ActeDeces::query()->whereStatus(100))
             ->columns([
                 TextColumn::make('created_at')->label("Date de création"),
                 IconColumn::make('owner')
@@ -57,6 +57,7 @@ class acte_deces_done extends Page implements HasTable
             ->actions([
                 \Filament\Tables\Actions\Action::make('consulter')
                     ->button()
+                    ->url(fn ($record) => ActeDecesDetails::getUrl(['id'=>$record->id]))
                     ->icon('heroicon-o-eye'),
                 EditAction::make('supprimer')->iconButton()->icon('heroicon-o-pencil'),
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')

@@ -67,8 +67,6 @@ class MobileController extends Controller
            'email'=>'required|email',
            'telephone'=>'required',
        ]);
-       */
-        /*
 
         */
         $request->json()->remove('type_acte');
@@ -92,7 +90,7 @@ class MobileController extends Controller
 
     public function create_declaration_naissance(Request $request, DeclarationNaissance $declarationNaissance): \Illuminate\Http\JsonResponse
     {
-        $data = $request->validate([
+        $data = Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
@@ -108,19 +106,21 @@ class MobileController extends Controller
             $declarationNaissance->piece_identite_mere = $request->file('piece_identite_mere')->storePublicly('piece_identite_mere');
         }
 
-        $declarationNaissance->fill($request->only([
-            'owner','telephone','email','nom_enfant','nom_defunt','prenoms_enfant',
+        $declarationNaissance->fill($request->json([
+            'owner','telephone','email','nom_enfant','prenoms_enfant',
             'lieu_naissance','date_naissance','type_piece','motif',
             'numero_acte','nb_copie','lieu','nom_pere','prenoms_pere','nom_mere','prenoms_mere',
         ]))
             ->save();
 
-        return $this->respondCreated();
+        return $this->respondCreated([
+            "message"=>"item created",
+        ]);
     }
 
     public function create_copie_integral(Request $request, CopieIntegrale $copieIntegrale):  JsonResponse
     {
-        $data = $request->validate([
+        $data = Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
@@ -136,12 +136,14 @@ class MobileController extends Controller
         ]))
             ->save();
 
-        return $this->respondCreated();
+        return $this->respondCreated([
+            "message"=>"item created",
+        ]);
     }
 
     public function create_acte_naissance(Request $request, ActeNaissance $acteNaissance): JsonResponse
     {
-        $data = $request->validate([
+        $data = Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
@@ -157,12 +159,14 @@ class MobileController extends Controller
         ]))
             ->save();
 
-        return $this->respondCreated();
+        return $this->respondCreated([
+            "message"=>"item created",
+        ]);
     }
 
     public function create_acte_marriage(Request $request, ActeMariage $acteMariage): JsonResponse
     {
-        $data = $request->validate([
+        $data = Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
@@ -178,12 +182,14 @@ class MobileController extends Controller
         ]))
             ->save();
 
-        return $this->respondCreated();
+        return $this->respondCreated([
+            "message"=>"item created",
+        ]);
     }
 
     public function create_date_mariage(Request $request, DateMariage $dateMariage): JsonResponse
     {
-        $data = $request->validate([
+        $data = Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
@@ -197,12 +203,14 @@ class MobileController extends Controller
             $dateMariage->extrait = $request->file('extrait_parent')->storePublicly('extrait_parent');
         }
 
-        $dateMariage->fill($request->only([
+        $dateMariage->fill($request->json([
             'owner','telephone','email','numero_piece','numero_acte','type_piece','motif',
             'numero_acte','nb_copie','lieu',
         ]))
             ->save();
 
-        return $this->respondCreated();
+        return $this->respondCreated([
+            "message"=>"item created",
+        ]);
     }
 }
