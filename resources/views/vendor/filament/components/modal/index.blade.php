@@ -95,10 +95,10 @@
 
     <div
         x-cloak
-        x-show="isOpen"
+        x-show="false"
         x-transition.duration.300ms.opacity
         @class([
-            'fixed inset-0 z-40 min-h-full overflow-y-auto overflow-x-hidden transition',
+            'fixed hidden inset-0 z-40 min-h-full overflow-y-auto overflow-x-hidden transition',
             'flex items-center' => ! $slideOver,
         ])
     >

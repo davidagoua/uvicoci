@@ -13,7 +13,10 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+
+
 
 class acte_deces_pending extends Page implements HasTable
 {
@@ -53,7 +56,15 @@ class acte_deces_pending extends Page implements HasTable
                     ->button()
                     ->url(fn ($record) => ActeDecesDetails::getUrl(['id'=>$record->id]))
                     ->icon('heroicon-o-eye'),
-                EditAction::make('supprimer')->iconButton()->icon('heroicon-o-pencil'),
+                EditAction::make('modifier')->iconButton()
+                    ->icon('heroicon-o-pencil')
+                    ->form([
+                        TextInput::make('email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        // ...
+                    ]),
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
             ->bulkActions([
