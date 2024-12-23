@@ -101,15 +101,15 @@ class MobileController extends Controller
         if($request->hasFile('certificat_naissance')){
             $declarationNaissance->certificat_naissance = $request->file('certificat_naissance')->storePublicly('certificat_naissance');
         }
-        if($request->hasFile('piece_identite_pere')){
-            $declarationNaissance->piece_identite_pere = $request->file('piece_identite_pere')->storePublicly('piece_identite_pere');
+        if($request->hasFile('cni_pere')){
+            $declarationNaissance->cni_pere = $request->file('cni_pere')->storePublicly('cni_pere');
         }
-        if($request->hasFile('piece_identite_mere')){
-            $declarationNaissance->piece_identite_mere = $request->file('piece_identite_mere')->storePublicly('piece_identite_mere');
+        if($request->hasFile('cni_mere')){
+            $declarationNaissance->cni_mere = $request->file('cni_mere')->storePublicly('cni_mere');
         }
         $request->json()->remove('type_acte');
-        $request->json()->remove('piece_identite_pere');
-        $request->json()->remove('piece_identite_mere');
+        $request->json()->remove('cni_pere');
+        $request->json()->remove('cni_mere');
         $request->json()->remove('certificat_naissance');
         $declarationNaissance->fill($request->json()->all());
         

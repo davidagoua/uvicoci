@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('nom_mere')->nullable();
             $table->string('prenoms_mere')->nullable();
             $table->string('certificat_naissance')->nullable();
-            $table->string('piece_identite_pere')->nullable();
-            $table->string('piece_identite_mere')->nullable();
+            $table->string('cni_pere')->nullable();
+            $table->string('cni_mere')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->longText('motif')->nullable();
             $table->string('numero_acte')->nullable();
