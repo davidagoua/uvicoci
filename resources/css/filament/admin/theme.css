@@ -10,16 +10,8 @@ body{
 .fi-sidebar{
     /*background-image: url("https://st.depositphotos.com/1027431/2471/v/450/depositphotos_24712251-stock-illustration-abstract-geometrical-background.jpg");*/
 }
-.fi-sidebar-item-button{
-    color: white !important;
-    background-color: transparent;
-}
-.fi-sidebar-item-icon, .fi-sidebar-item-label{
-    color: white;
-}
-.fi-sidebar-header{
-    @apply bg-orange-700 !important;
-}
+
+
 .fi-header{
     padding: 10px;
     border: 1px solid #eae3e3;
