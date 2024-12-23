@@ -48,7 +48,7 @@ class declaration_naissaince_pending extends Page implements HasTable
                     ->button()
                     ->url(fn ($record) => DeclarationNaissanceDetails::getUrl(['id'=>$record->id]))
                     ->icon('heroicon-o-eye'),
-                EditAction::make('modifier')->iconButton()->icon('heroicon-o-pencil'),
+                
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
             ->bulkActions([
