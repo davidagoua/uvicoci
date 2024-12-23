@@ -41,7 +41,7 @@ class acte_deces_done extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(ActeDeces::query()->whereStatus(100))
+            ->query(ActeDeces::query()->orderBy('created_at', 'desc')->whereStatus(100))
             ->columns([
                 TextColumn::make('created_at')->label("Date de création"),
                 IconColumn::make('owner')

@@ -25,7 +25,7 @@ class declaration_naissaince_pending extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(DeclarationNaissance::query()->where('status', 0))
+            ->query(DeclarationNaissance::query()->orderBy('created_at', 'desc')->where('status', 0))
             ->columns([
                 TextColumn::make('nom_enfant')->label('Nom')->searchable()->sortable(),
                 TextColumn::make('prenoms_enfant')->label('Prénoms')->searchable()->sortable(),
