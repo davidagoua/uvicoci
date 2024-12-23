@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('piece_identite_pere')->nullable();
             $table->string('piece_identite_mere')->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->longText('motif_demande')->nullable();
+            $table->longText('motif')->nullable();
             $table->string('numero_acte')->nullable();
             $table->string('nb_copie')->nullable();
             $table->string('lieu')->nullable();
