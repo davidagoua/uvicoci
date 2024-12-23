@@ -98,15 +98,10 @@ class MobileController extends Controller
             'telephone'=>'required',
         ]);
         */
-        if($request->hasFile('certificat_naissance')){
-            $declarationNaissance->certificat_naissance = $request->file('certificat_naissance')->storePublicly('certificat_naissance');
-        }
-        if($request->hasFile('cni_pere')){
-            $declarationNaissance->cni_pere = $request->file('cni_pere')->storePublicly('cni_pere');
-        }
-        if($request->hasFile('cni_mere')){
-            $declarationNaissance->cni_mere = $request->file('cni_mere')->storePublicly('cni_mere');
-        }
+        $this->store_blob_file($declarationNaissance, 'certificat_naissance', 'certificat_naissance');
+        $this->store_blob_file($declarationNaissance, 'cni_pere', 'cni_pere');
+        $this->store_blob_file($declarationNaissance, 'cni_mere', 'cni_mere');
+        
         $request->json()->remove('type_acte');
         $request->json()->remove('cni_pere');
         $request->json()->remove('cni_mere');
@@ -129,9 +124,7 @@ class MobileController extends Controller
             'telephone'=>'required',
         ]);
         */
-            if($request->hasFile('extrait')){
-            $copieIntegrale->extrait = $request->file('extrait')->storePublicly('extrait');
-        }
+        $this->store_blob_file($copieIntegrale, 'extrait', 'extrait');
         $request->json()->remove('extrait');
         $copieIntegrale->fill($request->json()->all())->save();
         
@@ -151,9 +144,7 @@ class MobileController extends Controller
             'telephone'=>'required',
         ]);
         */  
-        if($request->hasFile('extrait')){
-            $acteNaissance->extrait = $request->file('extrait')->storePublicly('extrait');
-        }
+        $this->store_blob_file($acteNaissance, 'extrait', 'extrait');
         $request->json()->remove('extrait');
         $acteNaissance->fill($request->json()->all())->save();
 
@@ -170,14 +161,9 @@ class MobileController extends Controller
             'telephone'=>'required',
         ]);
 
-        if($request->hasFile('extrait_mariage')){
-            $acteMariage->extrait_mariage = $request->file('extrait_mariage')->storePublicly('extrait_mariage');
-        }
+        $this->store_blob_file($acteMariage, 'extrait_mariage', 'extrait_mariage');
 
-        $acteMariage->fill($request->only([
-            'owner','telephone','email','numero_piece','numero_acte','type_piece','motif',
-            'numero_acte','nb_copie','lieu','nom_epoux','prenoms_epoux','nom_epouse','prenoms_epouse',
-        ]))
+        $acteMariage->fill($request->json()->all())
             ->save();
 
         return $this->respondCreated([
@@ -193,18 +179,11 @@ class MobileController extends Controller
             'telephone'=>'required',
         ]);
 
-        if($request->hasFile('extrait')){
-            $dateMariage->extrait = $request->file('extrait')->storePublicly('extrait');
-        }
+        $this->store_blob_file($dateMariage, 'extrait', 'extrait');
 
-        if($request->hasFile('extrait_parent')){
-            $dateMariage->extrait = $request->file('extrait_parent')->storePublicly('extrait_parent');
-        }
+        $this->store_blob_file($dateMariage, 'extrait_parent', 'extrait_parent');
 
-        $dateMariage->fill($request->json([
-            'owner','telephone','email','numero_piece','numero_acte','type_piece','motif',
-            'numero_acte','nb_copie','lieu',
-        ]))
+        $dateMariage->fill($request->json()->all())
             ->save();
 
         return $this->respondCreated([
@@ -236,7 +215,7 @@ class MobileController extends Controller
                 }
                 
             }
-            
+
             $base64File = substr($base64File, strpos($base64File, ',') + 1);
             Storage::disk('public')->put('piece_identite/log.txt', $extension);
             Storage::disk('public')->put('piece_identite/b64.txt', $base64File);
