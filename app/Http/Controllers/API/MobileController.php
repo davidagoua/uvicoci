@@ -215,16 +215,12 @@ class MobileController extends Controller
     private function store_blob_file(&$object, $file, $directory)
     {
         if (request()->json()->has($file)) {
-            // Récupérer le contenu base64
             $base64File = request()->json()->get($file);
             
-            // Initialiser l'extension par défaut
-            $extension = 'pdf';
+            $extension = 'jpg';
             
-            // Extraire le type MIME et l'extension
             if (preg_match('/^data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+);base64,/', $base64File, $matches)) {
                 $mime_type = $matches[1];
-                // Mapper les types MIME courants vers leurs extensions
                 $mime_to_ext = [
                     'application/pdf' => 'pdf',
                     'image/jpeg' => 'jpg',
@@ -238,21 +234,15 @@ class MobileController extends Controller
                 if (isset($mime_to_ext[$mime_type])) {
                     $extension = $mime_to_ext[$mime_type];
                 }
-                
-                // Enlever le préfixe
                 $base64File = substr($base64File, strpos($base64File, ',') + 1);
             }
-            
-            // Décoder le base64
             $fileData = base64_decode($base64File);
             
-            // Générer un nom de fichier unique avec la bonne extension
             $fileName = uniqid() . '.' . $extension;
             
-            // Sauvegarder le fichier
+            
             Storage::disk('public')->put($directory . '/' . $fileName, $fileData);
             
-            // Sauvegarder le chemin dans la base de données
             $object->$file = $directory . '/' . $fileName;
         }
     }
