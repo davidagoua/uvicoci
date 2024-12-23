@@ -3,27 +3,6 @@
 @config 'tailwind.config.js';
 
 
-body{
-    background-color: #ecf0f1 !important;
-}
-
-.fi-sidebar{
-    /*background-image: url("https://st.depositphotos.com/1027431/2471/v/450/depositphotos_24712251-stock-illustration-abstract-geometrical-background.jpg");*/
-    background-color: #ecf0f1 !important;
-}
 
 
-.fi-header{
-    padding: 10px;
-    border: 1px solid #eae3e3;
-    border-radius: 5px;
-}
-.fi-sidebar-item-button:hover{
-    @apply bg-orange-700 !important;
-}
-.fi-topbar{
-    @apply bg-green-400;
-}
-.fi-sidebar-group-label{
-    @apply text-white;
-}
+
