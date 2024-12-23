@@ -69,18 +69,19 @@ class MobileController extends Controller
        ]);
 
         */
-        $request->json()->remove('type_acte');
-        $request->json()->remove('pv_deces');
-        $request->json()->remove('piece_identite');
-        $acteDeces->fill($request->json()->all());
-
-
         if($request->hasFile('pv_deces')){
             $acteDeces->pv_deces = $request->file('pv_deces')->storePublicly('pv_deces');
         }
         if($request->hasFile('piece_identite')){
             $acteDeces->piece_identite = $request->file('piece_identite')->storePublicly('piece_identites');
         }
+        $request->json()->remove('type_acte');
+        $request->json()->remove('pv_deces');
+        $request->json()->remove('piece_identite');
+        $acteDeces->fill($request->json()->all());
+
+
+        
         $acteDeces->save();
 
         return $this->respondCreated([
@@ -89,13 +90,14 @@ class MobileController extends Controller
     }
 
     public function create_declaration_naissance(Request $request, DeclarationNaissance $declarationNaissance): \Illuminate\Http\JsonResponse
-    {
+    {   
+        /*
         $data = Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
         ]);
-
+        */
         if($request->hasFile('certificat_naissance')){
             $declarationNaissance->certificat_naissance = $request->file('certificat_naissance')->storePublicly('certificat_naissance');
         }
@@ -105,13 +107,15 @@ class MobileController extends Controller
         if($request->hasFile('piece_identite_mere')){
             $declarationNaissance->piece_identite_mere = $request->file('piece_identite_mere')->storePublicly('piece_identite_mere');
         }
+        $request->json()->remove('type_acte');
+        $request->json()->remove('piece_identite_pere');
+        $request->json()->remove('piece_identite_mere');
+        $request->json()->remove('certificat_naissance');
+        $declarationNaissance->fill($request->json()->all());
 
-        $declarationNaissance->fill($request->json([
-            'owner','telephone','email','nom_enfant','prenoms_enfant',
-            'lieu_naissance','date_naissance','type_piece','motif',
-            'numero_acte','nb_copie','lieu','nom_pere','prenoms_pere','nom_mere','prenoms_mere',
-        ]))
-            ->save();
+
+        
+        $declarationNaissance->save();
 
         return $this->respondCreated([
             "message"=>"item created",
