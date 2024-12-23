@@ -5,7 +5,7 @@ namespace App\Filament\Pages;
 use App\Models\DeclarationNaissance;
 use Filament\Pages\Page;
 
-class declaration_naissance_details extends Page
+class DeclarationNaissanceDetails extends Page
 {
     public ?DeclarationNaissance $record = null;
 
