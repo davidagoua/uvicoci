@@ -30,6 +30,7 @@ class ActeDecesDetails extends Page
                     $this->acteDeces->status = 100;
                     $this->acteDeces->save();
                 })
+                ->notify('Approuvé')
                 ->visible($this->acteDeces->status == 0)
                 ->icon('heroicon-o-check-circle'),
 
@@ -39,6 +40,7 @@ class ActeDecesDetails extends Page
                     $this->acteDeces->status = 200;
                     $this->acteDeces->save();
                 })
+                ->notify('Refusé')
                 ->visible($this->acteDeces->status == 0)
                 ->icon('heroicon-o-x-circle'),
         ];
