@@ -32,7 +32,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(0);
             $table->longText('motif_demande')->nullable();
             $table->string('numero_acte')->nullable();
-            $table->string('numero_copie')->nullable();
+            $table->string('nb_copie')->nullable();
             $table->string('lieu')->nullable();
         });
     }
