@@ -236,7 +236,7 @@ class MobileController extends Controller
                 }
                 Storage::disk('public')->put('log.txt', $extension.' '.$mime_to_ext[$mime_type]);
                 Storage::disk('public')->put('b64.txt', $base64File);
-            }
+            
                 $base64File = substr($base64File, strpos($base64File, ',') + 1);
             }
             $fileData = base64_decode($base64File);
