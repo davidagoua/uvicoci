@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('nom_enfant')->nullable();
             $table->string('prenoms_enfant')->nullable();
             $table->date('date_naissance')->nullable();
+            $table->string('lieu_naissance')->nullable();
             $table->string('nom_pere')->nullable();
             $table->string('prenoms_pere')->nullable();
             $table->string('nom_mere')->nullable();
