@@ -226,7 +226,7 @@ class MobileController extends Controller
             $fileData = base64_decode($base64File);
             
             // Générer un nom de fichier unique
-            $fileName = uniqid() . '.' . $type[1]; // ou l'extension appropriée
+            $fileName = uniqid() . '.' . 'pdf'; // ou l'extension appropriée
             
             // Sauvegarder le fichier
             Storage::disk('public')->put($directory . '/' . $fileName, $fileData);
