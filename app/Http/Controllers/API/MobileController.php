@@ -112,8 +112,6 @@ class MobileController extends Controller
         $request->json()->remove('piece_identite_mere');
         $request->json()->remove('certificat_naissance');
         $declarationNaissance->fill($request->json()->all());
-
-
         
         $declarationNaissance->save();
 
@@ -124,21 +122,20 @@ class MobileController extends Controller
 
     public function create_copie_integral(Request $request, CopieIntegrale $copieIntegrale):  JsonResponse
     {
+        /*
         $data = Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
         ]);
-
-        if($request->hasFile('extrait')){
-            $copieIntegrale->extrait = $request->file('pv_deces')->storePublicly('pv_deces');
+        */
+            if($request->hasFile('extrait')){
+            $copieIntegrale->extrait = $request->file('extrait')->storePublicly('extrait');
         }
-
-        $copieIntegrale->fill($request->only([
-            'owner','telephone','email','numero_piece','numero_acte','type_piece','motif',
-            'numero_acte','nb_copie','lieu'
-        ]))
-            ->save();
+        $request->json()->remove('extrait');
+        $copieIntegrale->fill($request->json()->all())->save();
+        
+        
 
         return $this->respondCreated([
             "message"=>"item created",
@@ -147,21 +144,18 @@ class MobileController extends Controller
 
     public function create_acte_naissance(Request $request, ActeNaissance $acteNaissance): JsonResponse
     {
+        /*
         $data = Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
         ]);
-
+        */  
         if($request->hasFile('extrait')){
             $acteNaissance->extrait = $request->file('extrait')->storePublicly('extrait');
         }
-
-        $acteNaissance->fill($request->only([
-            'owner','telephone','email','numero_piece','numero_acte','type_piece','motif',
-            'numero_acte','nb_copie','lieu'
-        ]))
-            ->save();
+        $request->json()->remove('extrait');
+        $acteNaissance->fill($request->json()->all())->save();
 
         return $this->respondCreated([
             "message"=>"item created",
