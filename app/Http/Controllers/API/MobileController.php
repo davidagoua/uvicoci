@@ -213,9 +213,9 @@ class MobileController extends Controller
 
     private function store_blob_file(&$object, $file, $directory)
     {
-        if ($request->json()->has($file)) {
+        if (request()->json()->has($file)) {
             // Récupérer le contenu base64
-            $base64File = $request->json()->get($file);
+            $base64File = request()->json()->get($file);
             
             // Enlever le préfixe "data:image/png;base64," si présent
             if (preg_match('/^data:image\/(\w+);base64,/', $base64File, $type)) {
