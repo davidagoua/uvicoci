@@ -1,24 +1,45 @@
 <x-filament-panels::page>
-    <div class="bg-white shadow rounded py-24 sm:py-32">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center md:grid-cols-3">
-                <div class="mx-auto flex flex-col max-w-xs  gap-y-4">
-                    <dt class="text-base/7 text-gray-600">Transactions every 24 hours</dt>
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">44 million</dd>
+    <div class="space-y-6">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <x-filament::card>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-lg font-medium">Total en attente</h2>
+                        <p class="text-3xl font-semibold">{{ \App\Models\ActeDeces::where('status', 0)->count() }}</p>
+                    </div>
+                    <div class="p-3 bg-primary-100 rounded-full">
+                        <x-heroicon-o-clock class="w-6 h-6 text-primary-500"/>
+                    </div>
                 </div>
-                <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                    <dt class="text-base/7 text-gray-600">Assets under holding</dt>
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">$119 trillion</dd>
-                </div>
-                <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                    <dt class="text-base/7 text-gray-600">New users annually</dt>
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">46,000</dd>
-                </div>
-            </dl>
-        </div>
-    </div>
+            </x-filament::card>
 
-    <div>
-        {{ $this->table }}
+            <x-filament::card>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-lg font-medium">Approuvés</h2>
+                        <p class="text-3xl font-semibold">{{ \App\Models\ActeDeces::where('status', 100)->count() }}</p>
+                    </div>
+                    <div class="p-3 bg-success-100 rounded-full">
+                        <x-heroicon-o-check-circle class="w-6 h-6 text-success-500"/>
+                    </div>
+                </div>
+            </x-filament::card>
+
+            <x-filament::card>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-lg font-medium">Rejetés</h2>
+                        <p class="text-3xl font-semibold">{{ \App\Models\ActeDeces::where('status', 200)->count() }}</p>
+                    </div>
+                    <div class="p-3 bg-danger-100 rounded-full">
+                        <x-heroicon-o-x-circle class="w-6 h-6 text-danger-500"/>
+                    </div>
+                </div>
+            </x-filament::card>
+        </div>
+
+        <div>
+            {{ $this->table }}
+        </div>
     </div>
 </x-filament-panels::page>

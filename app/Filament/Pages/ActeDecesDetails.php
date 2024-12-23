@@ -9,7 +9,7 @@ use Filament\Pages\Page;
 class ActeDecesDetails extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
+    protected static bool $shouldRegisterNavigation = false;
     protected static string $view = 'filament.pages.acte-deces-details';
     public ActeDeces $acteDeces;
 

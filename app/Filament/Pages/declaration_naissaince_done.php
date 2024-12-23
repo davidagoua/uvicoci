@@ -9,7 +9,7 @@ class declaration_naissaince_done extends Page
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static string $view = 'filament.pages.declaration_naissaince_done';
     protected static ?string $navigationLabel = "Terminés";
-    protected static ?string $navigationGroup = "Declaration de naissance";
+    protected static ?string $navigationGroup = "Déclaration de naissance";
 
     public static function getNavigationBadge(): ?string
     {

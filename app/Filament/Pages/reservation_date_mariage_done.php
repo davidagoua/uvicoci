@@ -10,7 +10,7 @@ class reservation_date_mariage_done extends Page
 
     protected static string $view = 'filament.pages.reservation_date_mariage_done';
     protected static ?string $navigationLabel = "Terminés";
-    protected static ?string $navigationGroup = "Reservation date de mariage";
+    protected static ?string $navigationGroup = "Réservation date de mariage";
 
     public static function getNavigationBadge(): ?string
     {
