@@ -23,6 +23,14 @@ class ActeDecesDetails extends Page
         return [
             Action::make('Rapport')
                 ->icon('heroicon-o-arrow-down-tray'),
+
+            Action::make('Approuver')
+                ->color('success')
+                ->icon('heroicon-o-check-circle'),
+
+            Action::make('Refuser')
+                ->color('danger')
+                ->icon('heroicon-o-x-circle'),
         ];
     }
 }
