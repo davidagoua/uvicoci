@@ -17,7 +17,7 @@ class copie_acte_naissance_pending extends Page implements HasTable
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static string $view = 'filament.pages.copie_acte_naissance_pending';
     protected static ?string $navigationLabel = "En cours";
-    protected static ?string $navigationGroup = "Copie d'acte de naissance";
+    protected static ?string $navigationGroup = "Copie intégrale d'acte de naissance";
 
     public function table(Table $table): Table
     {
