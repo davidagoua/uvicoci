@@ -1,3 +1,5 @@
+
+<x-filament-panels::page.simple>
 <style>
     body {
         background-image: url('/images/bg.jpg');
@@ -9,7 +11,6 @@
         height: 150px !important;
     }
 </style>
-<x-filament-panels::page.simple>
     @if (filament()->hasRegistration())
         <x-slot name="subheading">
             {{ __('filament-panels::pages/auth/login.actions.register.before') }}
