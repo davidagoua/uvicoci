@@ -14,9 +14,9 @@ class declaration_naissance_details extends Page
     protected static ?string $title = 'Détails de la déclaration de naissance';
     protected static bool $shouldRegisterNavigation = false;
 
-    public function mount(DeclarationNaissance $record): void
+    public function mount(): void
     {
-        $this->record = $record;
+        $this->record = DeclarationNaissance::where('id', request()->query('id'))->first();
     }
 
     protected function getViewData(): array
