@@ -25,8 +25,11 @@
                 </div>
                 <div class="my-5">
                     <h5 class="">
-                        <img src="{{ asset('storage/'.$this->acteDeces->pv_deces) }}" />
                             <span class="heroicon-o-arrow-down-tray"></span>
+                            <a href="{{ asset('storage/'.$this->acteDeces->pv_deces) }}" class="p-1 rounded-lg border hover:bg-amber-50 font-semisemibold shadow border-amber-700 text-amber-700 bg-white">
+                                <span class="heroicon-o-arrow-down-tray"></span>
+                               
+                            </a>
                             PV de decés
                         
                     </h5>
