@@ -1,5 +1,5 @@
 <x-filament-panels::page>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.tailwindcss.com"></script>
 <div class="bg-white rounded p-3 shadow">
     <div class="  p-3 ">
         <fieldset>
