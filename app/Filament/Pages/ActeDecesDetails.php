@@ -15,7 +15,7 @@ class ActeDecesDetails extends Page
 
     public function mount()
     {
-        $this->acteDeces = ActeDeces::query()->find(request()->query('id'))->first();
+        $this->acteDeces = ActeDeces::query()->whereId(request()->query('id'))->first();
     }
 
     public function getHeaderActions(): array
