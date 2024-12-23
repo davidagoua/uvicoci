@@ -67,10 +67,7 @@ class acte_deces_pending extends Page implements HasTable
                     ]),
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
-            ->bulkActions([
-                \Filament\Tables\Actions\BulkAction::make('exporter')->label("Exporter"),
-                DeleteBulkAction::make('supprimer')->requiresConfirmation()
-            ])
+            
             ;
     }
 

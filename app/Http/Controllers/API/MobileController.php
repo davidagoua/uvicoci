@@ -69,15 +69,14 @@ class MobileController extends Controller
        ]);
 
         */
-        if($request->hasFile('pv_deces')){
-            $acteDeces->pv_deces = $request->file('pv_deces')->storePublicly('pv_deces');
-        }
-        if($request->hasFile('piece_identite')){
-            $acteDeces->piece_identite = $request->file('piece_identite')->storePublicly('piece_identites');
-        }
+        $this->store_blob_file($acteDeces, 'pv_deces', 'pv_deces');
+        $this->store_blob_file($acteDeces, 'piece_identite', 'piece_identites');
+        
+        
         $request->json()->remove('type_acte');
         $request->json()->remove('pv_deces');
         $request->json()->remove('piece_identite');
+        
         $acteDeces->fill($request->json()->all());
 
 
@@ -210,5 +209,30 @@ class MobileController extends Controller
         return $this->respondCreated([
             "message"=>"item created",
         ]);
+    }
+
+    private function store_blob_file(&$object, $file, $directory)
+    {
+        if ($request->json()->has($file)) {
+            // Récupérer le contenu base64
+            $base64File = $request->json()->get($file);
+            
+            // Enlever le préfixe "data:image/png;base64," si présent
+            if (preg_match('/^data:image\/(\w+);base64,/', $base64File, $type)) {
+                $base64File = substr($base64File, strpos($base64File, ',') + 1);
+            }
+            
+            // Décoder le base64
+            $fileData = base64_decode($base64File);
+            
+            // Générer un nom de fichier unique
+            $fileName = uniqid() . '.' . $type[1]; // ou l'extension appropriée
+            
+            // Sauvegarder le fichier
+            Storage::disk('public')->put($directory . '/' . $fileName, $fileData);
+            
+            // Sauvegarder le chemin dans la base de données
+            $object->$file = $directory . '/' . $fileName;
+        }
     }
 }
