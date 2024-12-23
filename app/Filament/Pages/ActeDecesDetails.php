@@ -26,10 +26,18 @@ class ActeDecesDetails extends Page
 
             Action::make('Approuver')
                 ->color('success')
+                ->action(function () {
+                    $this->acteDeces->status = 100;
+                    $this->acteDeces->save();
+                })
                 ->icon('heroicon-o-check-circle'),
 
             Action::make('Refuser')
                 ->color('danger')
+                ->action(function () {
+                    $this->acteDeces->status = 200;
+                    $this->acteDeces->save();
+                })
                 ->icon('heroicon-o-x-circle'),
         ];
     }
