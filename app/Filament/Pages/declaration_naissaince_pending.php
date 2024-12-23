@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
-use Filament\Actions\Action;
 use App\Models\DeclarationNaissance;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -50,7 +49,7 @@ class declaration_naissaince_pending extends Page implements HasTable
             ->actions([
                 \Filament\Tables\Actions\Action::make('consulter')
                     ->button()
-                    ->url(fn ($record) => DeclarationNaissanceDetails::getUrl(['id'=>$record->id]))
+                    ->url(fn ($record) => declaration_naissance_details::getUrl(['id'=>$record->id]))
                     ->icon('heroicon-o-eye'),
                 
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
