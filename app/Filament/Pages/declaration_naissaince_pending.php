@@ -3,12 +3,16 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
+use Filament\Actions\Action;
 use App\Models\DeclarationNaissance;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 
 class declaration_naissaince_pending extends Page implements HasTable
 {
