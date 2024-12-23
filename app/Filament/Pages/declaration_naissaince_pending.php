@@ -24,14 +24,36 @@ class declaration_naissaince_pending extends Page implements HasTable
         return $table
             ->query(DeclarationNaissance::query()->where('status', 0))
             ->columns([
-                TextColumn::make('nom')->label('Nom')->searchable()->sortable(),
-                TextColumn::make('prenoms')->label('Prénoms')->searchable()->sortable(),
+                TextColumn::make('nom_enfant')->label('Nom')->searchable()->sortable(),
+                TextColumn::make('prenoms_enfant')->label('Prénoms')->searchable()->sortable(),
                 TextColumn::make('date_naissance')->label('Date Naissance')->date()->sortable(),
                 TextColumn::make('lieu_naissance')->label('Lieu Naissance')->searchable(),
                 TextColumn::make('nom_pere')->label('Nom Père')->searchable(),
                 TextColumn::make('nom_mere')->label('Nom Mère')->searchable(),
-                TextColumn::make('hopital')->label('Hôpital')->searchable(),
-                TextColumn::make('status')->label('Statut')->badge()
+            
+                TextColumn::make('status')->label('Statut')
+                    ->getStateUsing(function ($record) {
+                        if ($record->status == 0) {
+                            return "En attente";
+                        } elseif ($record->status == 100) {
+                            return "Approuvé";
+                        } else {
+                            return "Rejeté";
+                        }
+                    })
+                    ->badge()
+            ])
+            ->actions([
+                \Filament\Tables\Actions\Action::make('consulter')
+                    ->button()
+                    ->url(fn ($record) => DeclarationNaissanceDetails::getUrl(['id'=>$record->id]))
+                    ->icon('heroicon-o-eye'),
+                EditAction::make('modifier')->iconButton()->icon('heroicon-o-pencil'),
+                DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
+            ])
+            ->bulkActions([
+                \Filament\Tables\Actions\BulkAction::make('exporter')->label("Exporter"),
+                DeleteBulkAction::make('supprimer')->requiresConfirmation()
             ])
             ->filters([
                 SelectFilter::make('status')

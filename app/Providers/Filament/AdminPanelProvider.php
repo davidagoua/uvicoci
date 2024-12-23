@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->brandLogo(asset('images/logo-dark.png'))
+            ->brandLogo(asset('images/seguela2.fw.png'))
             ->font('ubuntu')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
