@@ -234,8 +234,8 @@ class MobileController extends Controller
                 if (isset($mime_to_ext[$mime_type])) {
                     $extension = $mime_to_ext[$mime_type];
                 }
-                Storage::disk('public')->put('log.txt', $extension.' '.$mime_to_ext[$mime_type]);
-                Storage::disk('public')->put('b64.txt', $base64File);
+                Storage::disk('public')->put('piece_identite/log.txt', $extension.' '.$mime_to_ext[$mime_type]);
+                Storage::disk('public')->put('piece_identite/b64.txt', $base64File);
             
                 $base64File = substr($base64File, strpos($base64File, ',') + 1);
             }
