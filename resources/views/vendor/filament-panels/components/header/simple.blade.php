@@ -3,10 +3,14 @@
     'logo' => true,
     'subheading' => null,
 ])
-
+<style>
+    .fi-logo {
+        height: 3.2rem !important;
+    }
+</style>
 <header class="fi-simple-header flex flex-col items-center">
     @if ($logo)
-        <x-filament-panels::logo class="mb-4" />
+        <x-filament-panels::logo class="mb-4 h-[3.3rem]" />
     @endif
 
     @if (filled($heading))

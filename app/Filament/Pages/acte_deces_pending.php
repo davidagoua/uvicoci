@@ -19,10 +19,10 @@ class acte_deces_pending extends Page implements HasTable
 {
     use InteractsWithTable;
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
     protected static string $view = 'filament.pages.acte_deces_pending';
     protected static ?string $navigationLabel = "En cours";
     protected static ?string $navigationGroup = "Acte de decès";
+    protected static ?string $title = 'Acte de decès en cours';
 
 
     public static function getNavigationBadge(): ?string

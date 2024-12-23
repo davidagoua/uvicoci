@@ -1,7 +1,7 @@
 @php
     $brandName = filament()->getBrandName();
     $brandLogo = filament()->getBrandLogo();
-    $brandLogoHeight = filament()->getBrandLogoHeight() ?? '1.5rem';
+    $brandLogoHeight = filament()->getBrandLogoHeight() ?? '3.3rem';
     $darkModeBrandLogo = filament()->getDarkModeBrandLogo();
     $hasDarkModeBrandLogo = filled($darkModeBrandLogo);
 
@@ -30,8 +30,8 @@
         <img
             alt="{{ $brandName }}"
             loading="lazy"
-            src="{{ $logo }}"
-            
+            src="/images/logo2.jpg"
+
             {{
                 $attributes
                     ->class([$getLogoClasses($isDarkMode)])
