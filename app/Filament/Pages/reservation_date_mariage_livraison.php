@@ -4,9 +4,9 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 
-class acte_deces_livraison extends Page
+class reservation_date_mariage_livraison extends Page
 {
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = "Livraisons";
-    protected static string $view = 'filament.pages.acte_deces_livraison';
+    protected static string $view = 'filament.pages.reservation_date_mariage_livraison';
 }
