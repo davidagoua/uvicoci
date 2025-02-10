@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\ActeDeces;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Pages\Page;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -67,7 +68,14 @@ class acte_deces_scan extends Page implements HasTable
     public function getHeaderActions(): array
     {
         return [
-            Action::make('exporter')->label("Scanner")
+            Action::make('scanner')
+                ->label("Scanner")
+                ->form([
+                    FileUpload::make('file')
+                ])
+                ->action(function(array $data){
+
+                })
         ];
     }
 }

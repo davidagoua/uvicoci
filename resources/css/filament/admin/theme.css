@@ -2,6 +2,26 @@
 
 @config 'tailwind.config.js';
 
+.fi-sidebar{
+    background-color: green !important;
+}
+.fi-sidebar-item-label{
+    color: white !important;
+}
+.fi-sidebar-item-label:hover{
+    color: green !important;
+}
+.fi-sidebar-group-label{
+    color: white !important;
+}
+.fi-active > .fi-sidebar-item-button > .fi-sidebar-item-label, .fi-sidebar-item-button:hover > .fi-sidebar-item-label{
+    color: green !important;
+}
+
+
+.fi-sidebar-item-icon, .fi-sidebar-group-icon{
+    color: white !important;
+}
 
 
 
