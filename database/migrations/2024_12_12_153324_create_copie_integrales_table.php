@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('numero_acte')->nullable();
             $table->string('nb_copie')->nullable();
             $table->string('lieu')->nullable();
+            $table->string('id_document')->nullable();
         });
     }
 

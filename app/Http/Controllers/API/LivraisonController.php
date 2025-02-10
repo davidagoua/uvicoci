@@ -15,7 +15,7 @@ class LivraisonController extends Controller
     public function checkStatus(Request $request, string $type, int $id)
     {
         $type_document = DocumentUtils::getModelByType($type);
-        $livraison = $type_document::query()->find($id); ;
+        $livraison = $type_document::query()->where('id_document', '=', $id); ;
         if($livraison){
             return $this->respondWithSuccess([
                 'status' => DocumentUtils::statusCodeToString($livraison->status),

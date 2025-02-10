@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('nb_copie')->nullable();
             $table->string('lieu')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->string('id_document')->nullable();
         });
     }
 

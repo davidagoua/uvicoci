@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nom_prenom')->nullable();
             $table->string('contact')->nullable();
             $table->integer('status')->default(0);
+            $table->string('id_document')->nullable();
         });
     }
 
