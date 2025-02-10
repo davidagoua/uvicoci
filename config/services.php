@@ -31,4 +31,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'ntfy' => [
+        'server' => env('NTFY_SERVER', 'https://ntfy.sh'),
+        'auth_enabled' => env('NTFY_AUTH_ENABLED', false),
+        'auth_username' => env('NTFY_AUTH_USERNAME'),
+        'auth_password' => env('NTFY_AUTH_PASSWORD'),
+    ],
+
 ];

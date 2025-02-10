@@ -42,4 +42,4 @@ Route::post('/auth/token', function (Request $request) {
 
 Route::controller(\App\Http\Controllers\API\MobileController::class)->group(function(){
     Route::post('/items', 'store_acte');
-});
+})->middleware(['auth:sanctum']);
