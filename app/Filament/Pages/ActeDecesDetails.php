@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\ActeDeces;
 use Filament\Actions\Action;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 
 class ActeDecesDetails extends Page
@@ -29,8 +30,8 @@ class ActeDecesDetails extends Page
                 ->action(function () {
                     $this->acteDeces->status = 100;
                     $this->acteDeces->save();
+                    Notification::make()->title("Demande approuvée")->success();
                 })
-                ->notify('Approuvé')
                 ->visible($this->acteDeces->status == 0)
                 ->icon('heroicon-o-check-circle'),
 
@@ -39,8 +40,9 @@ class ActeDecesDetails extends Page
                 ->action(function () {
                     $this->acteDeces->status = 200;
                     $this->acteDeces->save();
+
+                    Notification::make()->title("Demande refusée")->info();
                 })
-                ->notify('Refusé')
                 ->visible($this->acteDeces->status == 0)
                 ->icon('heroicon-o-x-circle'),
         ];
