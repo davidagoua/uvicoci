@@ -18,7 +18,7 @@ class LivraisonController extends Controller
         $livraison = $type_document::query()->find($id); ;
         if($livraison){
             return $this->respondWithSuccess([
-                'status' => $livraison->status,
+                'status' => DocumentUtils::statusCodeToString($livraison->status),
             ]);
         }
         return $this->respondNotFound(json_encode([]));
