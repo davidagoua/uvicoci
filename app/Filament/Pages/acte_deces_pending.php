@@ -30,7 +30,7 @@ class acte_deces_pending extends Page implements HasTable
 
     public static function getNavigationBadge(): ?string
     {
-        return ActeDeces::query()->count();
+        return ActeDeces::query()->whereStatus(0)->count();
     }
 
 
@@ -67,7 +67,7 @@ class acte_deces_pending extends Page implements HasTable
                     ]),
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
-            
+
             ;
     }
 

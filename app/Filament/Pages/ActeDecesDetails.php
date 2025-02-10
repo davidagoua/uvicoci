@@ -30,7 +30,7 @@ class ActeDecesDetails extends Page
                 ->action(function () {
                     $this->acteDeces->status = 100;
                     $this->acteDeces->save();
-                    Notification::make()->title("Demande approuvée")->success();
+                    Notification::make()->title("Demande approuvée")->success()->send();
                 })
                 ->visible($this->acteDeces->status == 0)
                 ->icon('heroicon-o-check-circle'),
@@ -40,11 +40,11 @@ class ActeDecesDetails extends Page
                 ->action(function () {
                     $this->acteDeces->status = 200;
                     $this->acteDeces->save();
-
-                    Notification::make()->title("Demande refusée")->info();
+                    Notification::make()->title("Demande refusée")->info()->send();
+                    redirect(acte_mariage_pending::getUrl());
                 })
                 ->visible($this->acteDeces->status == 0)
-                ->icon('heroicon-o-x-circle'),
+                ->icon('heroicon-o-x-circle')
         ];
     }
 }
