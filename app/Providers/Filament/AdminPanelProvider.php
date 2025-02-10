@@ -64,7 +64,7 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Impressions')
                     ->icon('heroicon-o-printer'),
                 NavigationGroup::make()
-                    ->label('Archivres')
+                    ->label('Scans')
                     ->icon('heroicon-o-server-stack'),
                 NavigationGroup::make()
                     ->label('Signature & Timbre')
@@ -75,6 +75,8 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Paramètres')
                     ->icon('heroicon-o-cog'),
+                NavigationGroup::make()
+                    ->label('Rôles et Permissions')
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
