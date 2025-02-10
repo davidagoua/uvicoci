@@ -3,7 +3,10 @@
 namespace App\Filament\Pages\reservation_date_mariage;
 
 use App\Models\DateMariage;
+use Filament\Forms\Components\TextInput;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -24,26 +27,25 @@ class reservation_date_mariage_done extends Page implements HasTable
         return $table
             ->query(DateMariage::query()->where('status', 100))
             ->columns([
-                TextColumn::make('nom_epoux')
-                    ->label('Nom de l\'époux')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('nom_epouse')
-                    ->label('Nom de l\'épouse')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('date_mariage')
-                    ->label('Date de mariage')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('heure_mariage')
-                    ->label('Heure de mariage')
-                    ->time()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->label('Date de création')
-                    ->dateTime()
-                    ->sortable(),
+                TextColumn::make('telephone')->label('Téléphone')->searchable()->sortable(),
+                TextColumn::make('email')->label('Email')->searchable()->sortable(),
+
+            ])
+            ->actions([
+                \Filament\Tables\Actions\Action::make('consulter')
+                    ->button()
+                    ->url(fn ($record) => ReservationDateMariageDetail::getUrl(['id'=>$record->id]))
+                    ->icon('heroicon-o-eye'),
+                EditAction::make('modifier')->iconButton()
+                    ->icon('heroicon-o-pencil')
+                    ->form([
+                        TextInput::make('email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        // ...
+                    ]),
+                DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
             ->defaultSort('created_at', 'desc');
     }

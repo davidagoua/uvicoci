@@ -2,7 +2,7 @@
 
 namespace App\Filament\Pages\copie_acte_naissance;
 
-use App\Models\CopieIntegrale;
+use App\Models\ActeNaissance;
 use Filament\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -22,7 +22,7 @@ class copie_acte_naissance_done extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(CopieIntegrale::query()->where('status', 100))
+            ->query(ActeNaissance::query()->where('status', 100))
             ->columns([
                 TextColumn::make('numero_acte')
                     ->label('Numéro d\'acte')
@@ -45,11 +45,17 @@ class copie_acte_naissance_done extends Page implements HasTable
                     ->dateTime()
                     ->sortable(),
             ])
+            ->actions([
+                \Filament\Tables\Actions\Action::make('consulter')
+                    ->button()
+                    ->url(fn ($record) => CopieActeNaissanceDetail::getUrl(['id'=>$record->id]))
+                    ->icon('heroicon-o-eye'),
+            ])
             ->defaultSort('created_at', 'desc');
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return CopieIntegrale::where('status', 100)->count();
+        return ActeNaissance::where('status', 100)->count();
     }
 }

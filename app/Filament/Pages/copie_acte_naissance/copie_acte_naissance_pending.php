@@ -2,8 +2,12 @@
 
 namespace App\Filament\Pages\copie_acte_naissance;
 
-use App\Models\CopieIntegrale;
+use App\Filament\Pages\acte_mariage\ActeMariageDetails;
+use App\Models\ActeNaissance;
+use Filament\Forms\Components\TextInput;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -17,35 +21,39 @@ class copie_acte_naissance_pending extends Page implements HasTable
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static string $view = 'filament.pages.copie_acte_naissance_pending';
     protected static ?string $navigationLabel = "Copie intégrale d'acte de naissance";
+    protected static ?string $title = "Copie intégrale d'acte de naissance";
     protected static ?string $navigationGroup = "Demandes";
 
     public function table(Table $table): Table
     {
         return $table
-            ->query(CopieIntegrale::query()->where('status', 0))
+            ->query(ActeNaissance::query()->where('status', 0))
             ->columns([
                 TextColumn::make('numero_acte')->label('Numéro Acte')->searchable()->sortable(),
-                TextColumn::make('nom')->label('Nom')->searchable()->sortable(),
-                TextColumn::make('prenoms')->label('Prénoms')->searchable()->sortable(),
-                TextColumn::make('date_naissance')->label('Date Naissance')->date()->sortable(),
-                TextColumn::make('lieu_naissance')->label('Lieu Naissance')->searchable(),
-                TextColumn::make('nom_pere')->label('Nom Père')->searchable(),
-                TextColumn::make('nom_mere')->label('Nom Mère')->searchable(),
+                TextColumn::make('telephone')->label('Téléphone')->searchable()->sortable(),
                 TextColumn::make('status')->label('Statut')->badge()
             ])
-            ->filters([
-                SelectFilter::make('status')
-                    ->options([
-                        0 => 'En attente',
-                        100 => 'Approuvé',
-                        200 => 'Rejeté',
-                    ])
+            ->actions([
+                \Filament\Tables\Actions\Action::make('consulter')
+                    ->button()
+                    ->url(fn ($record) => CopieActeNaissanceDetail::getUrl(['id'=>$record->id]))
+                    ->icon('heroicon-o-eye'),
+                EditAction::make('modifier')->iconButton()
+                    ->icon('heroicon-o-pencil')
+                    ->form([
+                        TextInput::make('email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        // ...
+                    ]),
+                DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
             ->defaultSort('created_at', 'desc');
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return CopieIntegrale::where('status', 0)->count();
+        return ActeNaissance::where('status', 0)->count();
     }
 }
