@@ -2,8 +2,8 @@
 
 namespace App\Filament\Pages\declaration_naissance;
 
-use App\Filament\Pages\acte_mariage\ActeMariageDetails;
-use App\Models\ActeMariage;
+use App\Filament\Pages\acte_mariage\DeclarationNaissanceDetails;
+use App\Models\DeclarationNaissance;
 use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Tables\Actions\DeleteAction;
@@ -11,10 +11,11 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class declaration_acte_naissance_sign extends Page
+class declaration_acte_naissance_sign extends Page implements HasTable
 {
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = "Signature & Timbre";
@@ -27,18 +28,18 @@ class declaration_acte_naissance_sign extends Page
 
     public static function getNavigationBadge(): ?string
     {
-        return ActeMariage::query()->whereStatus(500)->count();
+        return DeclarationNaissance::query()->whereStatus(300)->count();
     }
 
     public function query(): Builder
     {
-        return ActeMariage::query()->whereStatus(500);
+        return DeclarationNaissance::query()->whereStatus(300);
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->query(ActeMariage::query()->orderBy('created_at', 'desc')->whereStatus(500))
+            ->query(DeclarationNaissance::query()->orderBy('created_at', 'desc')->whereStatus(300))
             ->columns([
                 TextColumn::make('created_at')->label("Date de création"),
                 IconColumn::make('owner')
@@ -55,7 +56,7 @@ class declaration_acte_naissance_sign extends Page
             ->actions([
                 \Filament\Tables\Actions\Action::make('consulter')
                     ->button()
-                    ->url(fn ($record) => ActeMariageDetails::getUrl(['id'=>$record->id]))
+                    ->url(fn ($record) => DeclarationNaissanceDetails::getUrl(['id'=>$record->id]))
                     ->icon('heroicon-o-eye'),
                 EditAction::make('supprimer')->iconButton()->icon('heroicon-o-pencil'),
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
