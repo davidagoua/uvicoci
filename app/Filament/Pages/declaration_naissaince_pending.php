@@ -20,7 +20,7 @@ class declaration_naissaince_pending extends Page implements HasTable
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static string $view = 'filament.pages.declaration_naissaince_pending';
     protected static ?string $navigationLabel = "En cours";
-    protected static ?string $navigationGroup = "Déclaration de naissance";
+    protected static ?string $navigationGroup = "Demandes";
 
     public function table(Table $table): Table
     {
@@ -33,7 +33,7 @@ class declaration_naissaince_pending extends Page implements HasTable
                 TextColumn::make('lieu_naissance')->label('Lieu Naissance')->searchable(),
                 TextColumn::make('nom_pere')->label('Nom Père')->searchable(),
                 TextColumn::make('nom_mere')->label('Nom Mère')->searchable(),
-            
+
                 TextColumn::make('status')->label('Statut')
                     ->getStateUsing(function ($record) {
                         if ($record->status == 0) {
@@ -51,7 +51,7 @@ class declaration_naissaince_pending extends Page implements HasTable
                     ->button()
                     ->url(fn ($record) => declaration_naissance_details::getUrl(['id'=>$record->id]))
                     ->icon('heroicon-o-eye'),
-                
+
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
             ->bulkActions([

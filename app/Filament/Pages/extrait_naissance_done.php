@@ -17,7 +17,7 @@ class extrait_naissance_done extends Page implements HasTable
     protected static string $view = 'filament.pages.extrait_naissance_done';
     protected static ?string $title = 'Extraits de naissance terminés';
     protected static ?string $navigationLabel = "Terminés";
-    protected static ?string $navigationGroup = "Extrait de naissance";
+    protected static ?string $navigationGroup = "Impressions";
 
     public function table(Table $table): Table
     {

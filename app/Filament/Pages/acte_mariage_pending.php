@@ -20,7 +20,7 @@ class acte_mariage_pending extends Page implements HasTable
 
     protected static ?string $navigationLabel = "En cours";
 
-    protected static ?string $navigationGroup = "Acte de mariage";
+    protected static ?string $navigationGroup = "Demandes";
 
     public function table(Table $table): Table
     {

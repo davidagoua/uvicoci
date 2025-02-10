@@ -19,7 +19,7 @@ class acte_mariage_done extends Page implements HasTable
     protected static string $view = 'filament.pages.acte_mariage_done';
     protected static ?string $title = 'Acte de mariage terminés';
     protected static ?string $navigationLabel = "Terminés";
-    protected static ?string $navigationGroup = "Acte de mariage";
+    protected static ?string $navigationGroup = "Impressions";
 
     public function table(Table $table): Table
     {
@@ -48,7 +48,7 @@ class acte_mariage_done extends Page implements HasTable
                     ->sortable(),
             ])
             ->filters([
-                
+
             ])
             ->defaultSort('created_at', 'desc');
     }

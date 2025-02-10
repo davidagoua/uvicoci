@@ -25,7 +25,7 @@ class acte_deces_done extends Page implements HasTable
     protected static string $view = 'filament.pages.acte_deces_done';
 
     protected static ?string $navigationLabel = "Terminés";
-    protected static ?string $navigationGroup = "Acte de decès";
+    protected static ?string $navigationGroup = "Impressions";
     protected static ?string $title = 'Acte de decès terminés';
 
     public static function getNavigationBadge(): ?string
@@ -63,7 +63,7 @@ class acte_deces_done extends Page implements HasTable
                 EditAction::make('supprimer')->iconButton()->icon('heroicon-o-pencil'),
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
-            
+
             ;
     }
 

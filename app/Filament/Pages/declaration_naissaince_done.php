@@ -17,7 +17,7 @@ class declaration_naissaince_done extends Page implements HasTable
     protected static string $view = 'filament.pages.declaration_naissaince_done';
     protected static ?string $title = 'Déclarations de naissance terminées';
     protected static ?string $navigationLabel = "Terminés";
-    protected static ?string $navigationGroup = "Déclaration de naissance";
+    protected static ?string $navigationGroup = "Impressions";
 
     public function table(Table $table): Table
     {

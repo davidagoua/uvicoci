@@ -17,7 +17,7 @@ class reservation_date_mariage_done extends Page implements HasTable
     protected static string $view = 'filament.pages.reservation_date_mariage_done';
     protected static ?string $title = 'Réservations de date de mariage terminées';
     protected static ?string $navigationLabel = "Terminés";
-    protected static ?string $navigationGroup = "Réservation date de mariage";
+    protected static ?string $navigationGroup = "Impressions";
 
     public function table(Table $table): Table
     {
