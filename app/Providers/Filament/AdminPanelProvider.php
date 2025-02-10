@@ -73,6 +73,9 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Livraisons')
                     ->icon('heroicon-o-truck'),
                 NavigationGroup::make()
+                    ->label('Archivres')
+                    ->icon('heroicon-o-archive-box'),
+                NavigationGroup::make()
                     ->label('Paramètres')
                     ->icon('heroicon-o-cog'),
             ])
