@@ -11,7 +11,7 @@ use App\Models\DeclarationNaissance;
 
 class DocumentUtils
 {
-    public function getModelByType(string $type)
+    public static function getModelByType(string $type)
     {
         switch ($type){
             case 'ActeDeces':
