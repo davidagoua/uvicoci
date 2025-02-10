@@ -61,11 +61,11 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Demandes')
                     ->icon('heroicon-o-document'),
                 NavigationGroup::make()
-                    ->label('Impressions')
-                    ->icon('heroicon-o-printer'),
-                NavigationGroup::make()
                     ->label('Scans')
                     ->icon('heroicon-o-server-stack'),
+                NavigationGroup::make()
+                    ->label('Impressions')
+                    ->icon('heroicon-o-printer'),
                 NavigationGroup::make()
                     ->label('Signature & Timbre')
                     ->icon('heroicon-o-square-2-stack'),
@@ -75,11 +75,11 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Paramètres')
                     ->icon('heroicon-o-cog'),
-                NavigationGroup::make()
-                    ->label('Rôles et Permissions')
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
-            ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
+            ->plugins([
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ]);

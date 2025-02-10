@@ -12,10 +12,11 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class acte_mariage_sign extends Page
+class acte_mariage_sign extends Page implements HasTable
 {
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = "Signature & Timbre";
@@ -42,12 +43,7 @@ class acte_mariage_sign extends Page
             ->query(ActeMariage::query()->orderBy('created_at', 'desc')->whereStatus(300))
             ->columns([
                 TextColumn::make('created_at')->label("Date de création"),
-                IconColumn::make('owner')
-                    ->label('Titulaire')
-                    ->icon(fn (string $state): string =>  [
-                        true => 'heroicon-o-check-circle',
-                        false => 'heroicon-o-x-circle',
-                    ][$state]),
+
                 TextColumn::make('email'),
                 TextColumn::make('telephone'),
                 TextColumn::make('numero_piece'),

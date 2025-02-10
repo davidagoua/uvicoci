@@ -1,36 +1,26 @@
 @import '/vendor/filament/filament/resources/css/theme.css';
 
 @config 'tailwind.config.js';
-/*
-.fi-sidebar{
-    background-color: #074b07 !important;
-}
 
- */
+.fi-sidebar{
+    background-color: green !important;
+}
 .fi-sidebar-item-label{
-    color: #074b07 !important;
+    color: white !important;
 }
 .fi-sidebar-item-label:hover{
-    color: #074b07 !important;
+    color: green !important;
 }
 .fi-sidebar-group-label{
-    color: #074b07 !important;
+    color: white !important;
 }
 .fi-active > .fi-sidebar-item-button > .fi-sidebar-item-label, .fi-sidebar-item-button:hover > .fi-sidebar-item-label{
-    color: #074b07 !important;
+    color: green !important;
 }
 
 
 .fi-sidebar-item-icon, .fi-sidebar-group-icon{
-    color: #074b07 !important;
-}
-
-.fi-sidebar-group{
-    background-color: white;
-    box-shadow: 3px 3px 2px #aaa;
-    border: 2px solid #074b07;
-    border-radius: 7px;
-    @apply py-1
+    color: white !important;
 }
 
 

@@ -19,6 +19,7 @@ class declaration_naissaince_pending extends Page implements HasTable
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static string $view = 'filament.pages.declaration_naissaince_pending';
     protected static ?string $navigationLabel = "Déclarations de naissance";
+    protected static ?string $title = "Déclarations de naissance";
     protected static ?string $navigationGroup = "Demandes";
 
     public function table(Table $table): Table

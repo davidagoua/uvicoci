@@ -57,7 +57,7 @@ class declaration_acte_naissance_livraison extends Page implements HasTable
             ->actions([
                 \Filament\Tables\Actions\Action::make('consulter')
                     ->button()
-                    ->url(fn ($record) => ReservationDeclarationNaissanceDetail::getUrl(['id'=>$record->id]))
+                    ->url(fn ($record) => declaration_naissance_details::getUrl(['id'=>$record->id]))
                     ->icon('heroicon-o-eye'),
                 EditAction::make('supprimer')->iconButton()->icon('heroicon-o-pencil'),
                 DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')

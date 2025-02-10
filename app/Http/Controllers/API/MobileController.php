@@ -27,8 +27,9 @@ class MobileController extends Controller
         $data = Validator::validate($request->json()->all(), [
             'type_acte'=>'required'
         ]);
-
-        switch ($request->json()->get('type_acte')){
+        $type_acte = $request->json()->get('type_acte');
+        $request->json()->remove('type_acte');
+        switch ($type_acte){
             case 'ActeDeces':
                 return $this->create_acte_deces($request, new ActeDeces());
                 break;
@@ -155,12 +156,13 @@ class MobileController extends Controller
 
     public function create_acte_marriage(Request $request, ActeMariage $acteMariage): JsonResponse
     {
+        /*
          Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
         ]);
-
+        */
         $this->store_blob_file($acteMariage, 'extrait_mariage', 'extrait_mariage');
 
         $acteMariage->fill($request->json()->all())

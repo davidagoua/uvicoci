@@ -2,7 +2,7 @@
 
 namespace App\Filament\Pages\acte_deces;
 
-use App\Filament\Pages\acte_mariage\ActeDecesDetails;
+use App\Filament\Pages\acte_deces\ActeDecesDetails;
 use App\Models\ActeDeces;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
@@ -12,10 +12,11 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class acte_deces_livraison extends Page
+class acte_deces_livraison extends Page implements HasTable
 {
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = "Livraisons";
@@ -24,92 +25,6 @@ class acte_deces_livraison extends Page
     protected static ?string $title = "Acte Déces";
 
     use InteractsWithTable;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static function getNavigationBadge(): ?string
     {

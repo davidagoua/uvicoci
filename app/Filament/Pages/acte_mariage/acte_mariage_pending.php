@@ -2,8 +2,12 @@
 
 namespace App\Filament\Pages\acte_mariage;
 
+use App\Filament\Pages\acte_deces\ActeDecesDetails;
 use App\Models\ActeMariage;
+use Filament\Forms\Components\TextInput;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -29,12 +33,25 @@ class acte_mariage_pending extends Page implements HasTable
             ->columns([
                 TextColumn::make('numero_acte')->label('Numéro Acte')->searchable()->sortable(),
                 TextColumn::make('nom_epoux')->label('Nom Époux')->searchable()->sortable(),
-                TextColumn::make('prenom_epoux')->label('Prénom Époux')->searchable()->sortable(),
+                TextColumn::make('prenoms_epoux')->label('Prénom Époux')->searchable()->sortable(),
                 TextColumn::make('nom_epouse')->label('Nom Épouse')->searchable()->sortable(),
-                TextColumn::make('prenom_epouse')->label('Prénom Épouse')->searchable()->sortable(),
-                TextColumn::make('date_mariage')->label('Date Mariage')->date()->sortable(),
-                TextColumn::make('lieu_mariage')->label('Lieu Mariage')->searchable(),
-                TextColumn::make('status')->label('Statut')->badge()
+                TextColumn::make('prenoms_epouse')->label('Prénom Épouse')->searchable()->sortable(),
+            ])
+            ->actions([
+                \Filament\Tables\Actions\Action::make('consulter')
+                    ->button()
+                    ->url(fn ($record) => ActeMariageDetails::getUrl(['id'=>$record->id]))
+                    ->icon('heroicon-o-eye'),
+                EditAction::make('modifier')->iconButton()
+                    ->icon('heroicon-o-pencil')
+                    ->form([
+                        TextInput::make('email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        // ...
+                    ]),
+                DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
             ->filters([
                 SelectFilter::make('status')

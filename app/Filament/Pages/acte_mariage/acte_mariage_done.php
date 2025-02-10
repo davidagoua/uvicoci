@@ -2,8 +2,12 @@
 
 namespace App\Filament\Pages\acte_mariage;
 
+use App\Filament\Pages\acte_deces\ActeDecesDetails;
 use App\Models\ActeMariage;
+use Filament\Forms\Components\TextInput;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -47,6 +51,12 @@ class acte_mariage_done extends Page implements HasTable
             ])
             ->filters([
 
+            ])
+            ->actions([
+                \Filament\Tables\Actions\Action::make('consulter')
+                    ->button()
+                    ->url(fn ($record) => ActeMariageDetails::getUrl(['id'=>$record->id]))
+                    ->icon('heroicon-o-eye'),
             ])
             ->defaultSort('created_at', 'desc');
     }

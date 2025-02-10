@@ -4,6 +4,7 @@ namespace App\Filament\Pages\declaration_naissance;
 
 use App\Models\DeclarationNaissance;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -44,6 +45,14 @@ class declaration_naissaince_done extends Page implements HasTable
                     ->label('Date de création')
                     ->dateTime()
                     ->sortable(),
+            ])
+            ->actions([
+                \Filament\Tables\Actions\Action::make('consulter')
+                    ->button()
+                    ->url(fn ($record) => declaration_naissance_details::getUrl(['id'=>$record->id]))
+                    ->icon('heroicon-o-eye'),
+
+                DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ])
             ->defaultSort('created_at', 'desc');
     }

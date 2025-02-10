@@ -43,12 +43,6 @@ class acte_mariage_livraison extends Page implements  HasTable
             ->query(ActeMariage::query()->orderBy('created_at', 'desc')->whereStatus(600))
             ->columns([
                 TextColumn::make('created_at')->label("Date de création"),
-                IconColumn::make('owner')
-                    ->label('Titulaire')
-                    ->icon(fn(string $state): string => [
-                        true => 'heroicon-o-check-circle',
-                        false => 'heroicon-o-x-circle',
-                    ][$state]),
                 TextColumn::make('email'),
                 TextColumn::make('telephone'),
                 TextColumn::make('numero_piece'),
@@ -59,8 +53,6 @@ class acte_mariage_livraison extends Page implements  HasTable
                     ->button()
                     ->url(fn($record) => ActeMariageDetails::getUrl(['id' => $record->id]))
                     ->icon('heroicon-o-eye'),
-                EditAction::make('supprimer')->iconButton()->icon('heroicon-o-pencil'),
-                DeleteAction::make('supprimer')->iconButton()->icon('heroicon-o-trash')
             ]);
     }
 

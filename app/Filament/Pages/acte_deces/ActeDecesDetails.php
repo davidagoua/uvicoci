@@ -32,12 +32,48 @@ class ActeDecesDetails extends Page
                     $this->acteDeces->status = 100;
                     $this->acteDeces->save();
                     Notification::make()->title("Demande approuvée")->success()->send();
-                    redirect(acte_mariage_pending::getUrl());
+                    redirect(acte_deces_pending::getUrl());
                 })
                 ->visible($this->acteDeces->status == 0)
                 ->icon('heroicon-o-check-circle'),
 
-            Action::make('Refuser')
+            Action::make('signature')
+                ->label("Envoyer pour signature")
+                ->color('success')
+                ->action(function () {
+                    $this->acteDeces->status = 300;
+                    $this->acteDeces->save();
+                    Notification::make()->title("Demande envoyé pour signature")->info()->send();
+                    redirect(acte_deces_done::getUrl());
+                })
+                ->visible($this->acteDeces->status == 100)
+                ->icon('heroicon-o-square-2-stack'),
+
+            Action::make('livraison')
+                ->label("Livraison")
+                ->color('success')
+                ->action(function () {
+                    $this->acteDeces->status = 600;
+                    $this->acteDeces->save();
+                    Notification::make()->title("Demande envoyé pour livraison")->info()->send();
+                    redirect(acte_deces_sign::getUrl());
+                })
+                ->visible($this->acteDeces->status == 300)
+                ->icon('heroicon-o-truck'),
+
+            Action::make('Délivre')
+                ->label("Délivré")
+                ->color('success')
+                ->action(function () {
+                    $this->acteDeces->status = 700;
+                    $this->acteDeces->save();
+                    Notification::make()->title("Demande mise à jour")->info()->send();
+                    redirect(acte_deces_livraison::getUrl());
+                })
+                ->visible($this->acteDeces->status == 600)
+                ->icon('heroicon-o-check-circle'),
+
+        Action::make('Refuser')
                 ->color('danger')
                 ->action(function () {
                     $this->acteDeces->status = 200;
@@ -45,7 +81,6 @@ class ActeDecesDetails extends Page
                     Notification::make()->title("Demande refusée")->info()->send();
                     redirect(acte_mariage_pending::getUrl());
                 })
-                ->visible($this->acteDeces->status == 0)
                 ->icon('heroicon-o-x-circle')
         ];
     }
