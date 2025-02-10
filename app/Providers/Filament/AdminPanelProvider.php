@@ -2,9 +2,11 @@
 
 namespace App\Providers\Filament;
 
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -42,7 +44,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
             ])
-            //->spa()   
+            //->spa()
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -54,7 +56,28 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('Demandes')
+                    ->icon('heroicon-o-document'),
+                NavigationGroup::make()
+                    ->label('Impressions')
+                    ->icon('heroicon-o-printer'),
+                NavigationGroup::make()
+                    ->label('Archivres')
+                    ->icon('heroicon-o-server-stack'),
+                NavigationGroup::make()
+                    ->label('Signature & Timbre')
+                    ->icon('heroicon-o-square-2-stack'),
+                NavigationGroup::make()
+                    ->label('Livraisons')
+                    ->icon('heroicon-o-truck'),
+                NavigationGroup::make()
+                    ->label('Paramètres')
+                    ->icon('heroicon-o-cog'),
+            ])
             ->viteTheme('resources/css/filament/admin/theme.css')
+            ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
             ->authMiddleware([
                 Authenticate::class,
             ]);

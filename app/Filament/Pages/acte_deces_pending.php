@@ -21,9 +21,9 @@ use Illuminate\Database\Eloquent\Builder;
 class acte_deces_pending extends Page implements HasTable
 {
     use InteractsWithTable;
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    // protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static string $view = 'filament.pages.acte_deces_pending';
-    protected static ?string $navigationLabel = "En cours";
+    protected static ?string $navigationLabel = "Acte de decès";
     protected static ?string $navigationGroup = "Demandes";
     protected static ?string $title = 'Acte de decès en cours';
 

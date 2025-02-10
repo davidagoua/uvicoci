@@ -13,10 +13,10 @@ class copie_acte_naissance_done extends Page implements HasTable
 {
     use InteractsWithTable;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    // protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static string $view = 'filament.pages.copie_acte_naissance_done';
     protected static ?string $title = 'Copie intégrale d\'acte de naissance terminés';
-    protected static ?string $navigationLabel = "Terminés";
+    protected static ?string $navigationLabel = "Copie intégrale d\'acte de naissance";
     protected static ?string $navigationGroup = "Impressions";
 
     public function table(Table $table): Table

@@ -14,9 +14,9 @@ class reservation_date_mariage_pending extends Page implements HasTable
 {
     use InteractsWithTable;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    // protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static string $view = 'filament.pages.reservation_date_mariage_pending';
-    protected static ?string $navigationLabel = "En cours";
+    protected static ?string $navigationLabel = "Date de mariage";
     protected static ?string $navigationGroup = "Demandes";
 
     public function table(Table $table): Table
