@@ -71,7 +71,11 @@ class acte_deces_pending extends Page implements HasTable
     public function getHeaderActions(): array
     {
         return [
-            Action::make('exporter')->label("Exporter")
+            Action::make('exporter')
+                ->form([
+                    TextInput::make('email')
+                ])
+                ->label("Exporter")
         ];
     }
 }
