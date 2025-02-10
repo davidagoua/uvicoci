@@ -43,3 +43,8 @@ Route::post('/auth/token', function (Request $request) {
 Route::controller(\App\Http\Controllers\API\MobileController::class)->group(function(){
     Route::post('/items', 'store_acte');
 })->middleware(['auth:sanctum']);
+
+Route::get('/livraisons/{type}/{id}/check-status', [
+    \App\Http\Controllers\API\LivraisonController::class,
+    'checkStatus',
+])->middleware(['auth:sanctum']);
