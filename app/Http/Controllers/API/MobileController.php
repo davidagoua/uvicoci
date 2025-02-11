@@ -164,7 +164,7 @@ class MobileController extends Controller
         ]);
         */
         $this->store_blob_file($acteMariage, 'extrait_mariage', 'extrait_mariage');
-
+        $request->json()->remove('extrait_mariage');
         $acteMariage->fill($request->json()->all())
             ->save();
 
@@ -186,7 +186,8 @@ class MobileController extends Controller
         $this->store_blob_file($dateMariage, 'extrait', 'extrait');
 
         $this->store_blob_file($dateMariage, 'extrait_parent', 'extrait_parent');
-
+        $request->json()->remove('extrait');
+        $request->json()->remove('extrait_parent');
         $dateMariage->fill($request->json()->all())
             ->save();
 
