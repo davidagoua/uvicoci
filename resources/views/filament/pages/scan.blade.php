@@ -1,7 +1,5 @@
 <x-filament-panels::page>
 <div>
-    {{ $this->table }}
+    {{ $this->form }}
 </div>
-    <x-filament-actions::modals />
 </x-filament-panels::page>
-

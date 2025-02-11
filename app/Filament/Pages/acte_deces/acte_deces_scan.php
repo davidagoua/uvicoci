@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages\acte_deces;
 
+use App\Filament\Pages\scan;
 use App\Models\ActeDeces;
 use App\Models\User;
 use Filament\Actions\Action;
@@ -73,12 +74,7 @@ class acte_deces_scan extends Page implements HasTable
             Action::make('scanner')
                 ->label("Numeriser")
                 ->icon('heroicon-o-clipboard-document-check')
-                ->form([
-                    FileUpload::make('file')
-                ])
-                ->action(function(array $data){
-
-                }),
+                ->url(scan::getUrl()),
         ];
     }
 }
