@@ -74,7 +74,7 @@ class acte_deces_scan extends Page implements HasTable
             Action::make('scanner')
                 ->label("Numeriser")
                 ->icon('heroicon-o-clipboard-document-check')
-                ->url(scan::getUrl()),
+                ->url(scan::getUrl(['type_document'=>'ActeDeces'])),
         ];
     }
 }

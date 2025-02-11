@@ -175,11 +175,13 @@ class MobileController extends Controller
 
     public function create_date_mariage(Request $request, DateMariage $dateMariage): JsonResponse
     {
+        /*
         Validator::validate($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
         ]);
+        */
 
         $this->store_blob_file($dateMariage, 'extrait', 'extrait');
 
