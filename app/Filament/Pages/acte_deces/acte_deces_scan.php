@@ -50,9 +50,9 @@ class acte_deces_scan extends Page implements HasTable
                     ->icon(fn (string $state): string =>  [
                         true => 'heroicon-o-check-circle',
                         false => 'heroicon-o-x-circle',
-                    ][$state]),
-                TextColumn::make('email'),
-                TextColumn::make('telephone'),
+                    ][(bool) $state]),
+                TextColumn::make('nom_defunt'),
+                TextColumn::make('prenoms_defunt'),
                 TextColumn::make('numero_piece'),
 
             ])

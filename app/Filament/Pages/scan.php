@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Pages\acte_deces\acte_deces_scan;
 use App\Models\ActeDeces;
 use App\Services\DocumentUtils;
 use Filament\Actions\Action;
@@ -10,6 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Testing\Fluent\Concerns\Interaction;
 
@@ -50,13 +52,26 @@ class scan extends Page implements HasForms
 
     protected function getHeaderActions(): array
     {
+        $payload = $this->form->getState();
         return [
           Action::make('save')
             ->label("Enregistrer les documents")
             ->icon('heroicon-o-check')
             ->color('success')
-            ->action(function(){
+            ->action(function() use($payload){
+                $this->documentClass::create([
+                    'status'=>500,
+                    'owner'=>false,
+                    'nom_defunt'=> $payload['nom'],
+                    'prenoms_defunt'=> $payload['prenoms'],
+                    'numero_acte'=> $payload['numero_registre'],
+                ]);
 
+                Notification::make()
+                    ->title("Document enregistré")
+                    ->success()->send();
+
+                return redirect(acte_deces_scan::getUrl());
             })
         ];
     }

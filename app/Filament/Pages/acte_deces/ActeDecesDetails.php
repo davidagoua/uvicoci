@@ -23,8 +23,6 @@ class ActeDecesDetails extends Page
     public function getHeaderActions(): array
     {
         return [
-            Action::make('Rapport')
-                ->icon('heroicon-o-arrow-down-tray'),
 
             Action::make('Approuver')
                 ->color('success')
@@ -46,7 +44,7 @@ class ActeDecesDetails extends Page
                     Notification::make()->title("Demande envoyé pour signature")->info()->send();
                     redirect(acte_deces_done::getUrl());
                 })
-                ->visible($this->acteDeces->status == 100)
+                ->visible($this->acteDeces->status == 100 || $this->acteDeces->status == 500)
                 ->icon('heroicon-o-square-2-stack'),
 
             Action::make('livraison')
