@@ -24,9 +24,10 @@ class MobileController extends Controller
 
     public function store_acte(Request $request)
     {
-        $data = Validator::validate($request->json()->all(), [
-            'type_acte'=>'required'
+        $data = Validator::make($request->json()->all(), [
+            'type_acte'=>'required',
         ]);
+
         $type_acte = $request->json()->get('type_acte');
         $request->json()->remove('type_acte');
         switch ($type_acte){
@@ -56,14 +57,14 @@ class MobileController extends Controller
     public function create_acte_deces(Request $request, ActeDeces $acteDeces): \Illuminate\Http\JsonResponse
     {
 
-        /*
-       $data = Validator::validate($request->json()->all(), [
+
+       $data = Validator::make($request->json()->all(), [
            'owner'=>'required|boolean',
            'email'=>'required|email',
            'telephone'=>'required',
        ]);
        // return $request->json()->all();
-
+        /*
        $data = $request->validate([
            'owner'=>'required|boolean',
            'email'=>'required|email',
@@ -119,7 +120,7 @@ class MobileController extends Controller
     public function create_copie_integral(Request $request, CopieIntegrale $copieIntegrale):  JsonResponse
     {
         /*
-        $data = Validator::validate($request->json()->all(), [
+        $data = Validator::make($request->json()->all(), [
             'owner'=>'required|boolean',
             'email'=>'required|email',
             'telephone'=>'required',
